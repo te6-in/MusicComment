@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+import UIKit
 
 @main
 struct MusicCommentApp: App {
-    let persistenceController = PersistenceController.shared
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-        }
-    }
+	init() {
+		UITextView.appearance().backgroundColor = UIColor.clear
+	}
+	
+	var body: some Scene {
+		WindowGroup {
+			ContentView(coreDM: CoreDataManager())
+		}
+	}
 }

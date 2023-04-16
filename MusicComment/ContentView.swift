@@ -6,83 +6,120 @@
 //
 
 import SwiftUI
-import CoreData
 
-struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
-    var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+struct NoteCardView: View {
+	var note: Note
+	
+	var body: some View {
+		VStack(alignment: .leading, spacing: 0) {
+			if (note.content ?? "").isEmpty == false {
+				Text(note.content ?? "")
+					.font(.title2)
+					.bold()
+					.lineSpacing(6)
+					.fixedSize(horizontal: false, vertical: true)
+					.foregroundColor(.white)
+					.padding()
+					.frame(maxWidth: .infinity, alignment: .leading)
+					.shadow(color: Color("noteTextShadow"), radius: 4, x: 0, y: 2)
+			}
+			HStack(spacing: 12) {
+				AsyncImage(url: URL(string: note.coverImageURL ?? "")) { image in
+					image
+						.resizable()
+						.scaledToFit()
+				} placeholder: {
+					ProgressView()
+				}
+				.frame(width: 48, height: 48)
+				.clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+				.shadow(color: Color("noteShadow"), radius: 4, x: 0, y: 2)
+				VStack(alignment: .leading) {
+					Text(note.title ?? "Unavailable Title")
+						.bold()
+						.foregroundColor(.white)
+						.lineLimit(1)
+					Text(note.artist ?? "Unavailable Artist")
+						.foregroundColor(.white)
+						.lineLimit(1)
+						.opacity(0.65)
+				}
+			}
+			.padding(16)
+			.frame(maxWidth: .infinity, alignment: .leading)
+			.background(Rectangle().fill(.black).opacity(0.12))
+		}
+		.background(
+			AsyncImage(url: URL(string: note.coverImageURL ?? "")) { image in
+				image
+					.resizable()
+					.scaledToFill()
+					.scaleEffect(1.5, anchor: .center)
+					.blur(radius: 28)
+					.saturation(2)
+			} placeholder: { Rectangle().fill(.gray) }
+				.overlay(Rectangle().fill(.black).opacity(0.2))
+		)
+		.clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+	}
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
+struct ContentView: View {
+	let coreDM: CoreDataManager
+	
+	@State private var showingAddSheet = false
+	
+	// NOT A GOOD IDEA
+	@State private var notes: [Note] = [Note]()
+	
+	func loadNotes() {
+		notes = coreDM.getAllNotes()
+	}
+	
+	var body: some View {
+		NavigationView() {
+			List {
+				ForEach (notes, id: \.self) { note in
+					ZStack {
+						NavigationLink(destination: NoteDetailView(note: note, noteInput: note.content ?? "", coreDM: coreDM)) {
+							EmptyView()
+						}
+						NoteCardView(note: note)
+							.shadow(color: Color("noteShadow"), radius: 3, x: 0, y: 1)
+					}
+					.listRowSeparator(.hidden)
+				}
+				.onDelete(perform: { indexSet in
+					indexSet.forEach { index in
+						let note = notes[index]
+						coreDM.deleteNote(note: note)
+						loadNotes()
+					}
+				})
+			}
+			.listStyle(.plain)
+			.navigationTitle(Text("Notes"))
+			.toolbar {
+				Button {
+					self.showingAddSheet.toggle()
+				} label: {
+					Label("Add a new note from clipboard", systemImage: "plus.circle.fill")
+				}
+				.sheet(isPresented: $showingAddSheet, onDismiss: {
+					loadNotes()
+				}) { AddNoteView(coreDM: CoreDataManager())
+				}
+				.accentColor(.yellow)
+			}
+		}
+		.onAppear(perform: {
+			loadNotes()
+		})
+	}
+}
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
+	static var previews: some View {
+		ContentView(coreDM: CoreDataManager())
+	}
 }

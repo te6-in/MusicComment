@@ -16,6 +16,10 @@
 		FFAFF57A2722C1B000B1DCD2 /* MusicCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFF5792722C1B000B1DCD2 /* MusicCommentTests.swift */; };
 		FFAFF5842722C1B000B1DCD2 /* MusicCommentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFF5832722C1B000B1DCD2 /* MusicCommentUITests.swift */; };
 		FFAFF5862722C1B000B1DCD2 /* MusicCommentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFF5852722C1B000B1DCD2 /* MusicCommentUITestsLaunchTests.swift */; };
+		FFAFF5942722C3B200B1DCD2 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = FFAFF5932722C3B200B1DCD2 /* SwiftSoup */; };
+		FFAFF5B4272461C400B1DCD2 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFF5B3272461C400B1DCD2 /* AddNoteView.swift */; };
+		FFB26F8327FEC413004D31D2 /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB26F8227FEC413004D31D2 /* NoteDetailView.swift */; };
+		FFDC096A27FF320F009C2E24 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC096927FF320F009C2E24 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FFAFF5AD272455A200B1DCD2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		FFAFF5602722C1AC00B1DCD2 /* MusicComment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicComment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAFF5632722C1AC00B1DCD2 /* MusicCommentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCommentApp.swift; sourceTree = "<group>"; };
@@ -48,6 +65,9 @@
 		FFAFF57F2722C1B000B1DCD2 /* MusicCommentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicCommentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAFF5832722C1B000B1DCD2 /* MusicCommentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCommentUITests.swift; sourceTree = "<group>"; };
 		FFAFF5852722C1B000B1DCD2 /* MusicCommentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCommentUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FFAFF5B3272461C400B1DCD2 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
+		FFB26F8227FEC413004D31D2 /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
+		FFDC096927FF320F009C2E24 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFAFF5942722C3B200B1DCD2 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +103,7 @@
 				FFAFF5782722C1B000B1DCD2 /* MusicCommentTests */,
 				FFAFF5822722C1B000B1DCD2 /* MusicCommentUITests */,
 				FFAFF5612722C1AC00B1DCD2 /* Products */,
+				FFAFF5B82724644E00B1DCD2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +120,9 @@
 		FFAFF5622722C1AC00B1DCD2 /* MusicComment */ = {
 			isa = PBXGroup;
 			children = (
+				FFDC096827FF31EA009C2E24 /* Managers */,
+				FFAFF5B3272461C400B1DCD2 /* AddNoteView.swift */,
+				FFB26F8227FEC413004D31D2 /* NoteDetailView.swift */,
 				FFAFF5632722C1AC00B1DCD2 /* MusicCommentApp.swift */,
 				FFAFF5652722C1AC00B1DCD2 /* ContentView.swift */,
 				FFAFF5672722C1AF00B1DCD2 /* Assets.xcassets */,
@@ -133,6 +158,21 @@
 			path = MusicCommentUITests;
 			sourceTree = "<group>";
 		};
+		FFAFF5B82724644E00B1DCD2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FFDC096827FF31EA009C2E24 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FFDC096927FF320F009C2E24 /* CoreDataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,12 +183,16 @@
 				FFAFF55C2722C1AC00B1DCD2 /* Sources */,
 				FFAFF55D2722C1AC00B1DCD2 /* Frameworks */,
 				FFAFF55E2722C1AC00B1DCD2 /* Resources */,
+				FFAFF5AD272455A200B1DCD2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MusicComment;
+			packageProductDependencies = (
+				FFAFF5932722C3B200B1DCD2 /* SwiftSoup */,
+			);
 			productName = MusicComment;
 			productReference = FFAFF5602722C1AC00B1DCD2 /* MusicComment.app */;
 			productType = "com.apple.product-type.application";
@@ -221,6 +265,9 @@
 				Base,
 			);
 			mainGroup = FFAFF5572722C1AC00B1DCD2;
+			packageReferences = (
+				FFAFF5922722C3B200B1DCD2 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = FFAFF5612722C1AC00B1DCD2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -266,7 +313,10 @@
 				FFAFF56D2722C1AF00B1DCD2 /* Persistence.swift in Sources */,
 				FFAFF5702722C1AF00B1DCD2 /* MusicComment.xcdatamodeld in Sources */,
 				FFAFF5662722C1AC00B1DCD2 /* ContentView.swift in Sources */,
+				FFB26F8327FEC413004D31D2 /* NoteDetailView.swift in Sources */,
 				FFAFF5642722C1AC00B1DCD2 /* MusicCommentApp.swift in Sources */,
+				FFDC096A27FF320F009C2E24 /* CoreDataManager.swift in Sources */,
+				FFAFF5B4272461C400B1DCD2 /* AddNoteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +472,7 @@
 		FFAFF58A2722C1B000B1DCD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -435,7 +486,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,6 +503,7 @@
 		FFAFF58B2722C1B000B1DCD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -465,7 +517,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -488,7 +540,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9KHJ6G4TTW;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -513,7 +565,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9KHJ6G4TTW;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -615,6 +667,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FFAFF5922722C3B200B1DCD2 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FFAFF5932722C3B200B1DCD2 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFAFF5922722C3B200B1DCD2 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		FFAFF56E2722C1AF00B1DCD2 /* MusicComment.xcdatamodeld */ = {
